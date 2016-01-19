@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <title>Morpion game</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -37,63 +37,63 @@
 		<div class="row">
 			<div class="col s4 offset-s4">
 				<div id="gameGrid">
-					<div class="square blue-grey lighten-4" data-select="false" data-x="0" data-y="0">
+					<div class="square blue-grey lighten-4" data-belong="false" data-selected="false" data-x="0" data-y="0">
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4" data-select="false" data-x="1" data-y="0">
+					<div class="square blue-grey lighten-4" data-belong="false" data-selected="false" data-x="1" data-y="0">
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4"  data-select="false" data-x="2" data-y="0">
+					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x="2" data-y="0">
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4"  data-select="false" data-x="0" data-y="1">
+					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x="0" data-y="1">
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4"  data-select="false" data-x="1" data-y="1">
+					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x="1" data-y="1">
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4"  data-select="false" data-x="2" data-y="1">
+					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x="2" data-y="1">
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4"  data-select="false" data-x="0" data-y="2">
+					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x="0" data-y="2">
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4"  data-select="false" data-x="1" data-y="2">
+					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x="1" data-y="2">
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4"  data-select="false" data-x="2" data-y="2">
+					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x="2" data-y="2">
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
@@ -105,7 +105,7 @@
 		</div>
 		<div class="row">
 			<div class="col s4 offset-s4 center-align">
-				<a href="#" id="validateTourButton" class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>Valider le tour</a>
+				<a href="#" id="validateTourButton" class="disabled waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>Valider le tour</a>
 			</div>
 		</div>
 		<div class="row">
@@ -120,7 +120,7 @@
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
+          <h5 class="white-text">Morpion game</h5>
           <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
 
 
@@ -158,11 +158,11 @@
       <form action="#">
 	      <div class="row">
 	        <div class="input-field col s6">
-	          <input id="player1name" type="text" class="validate">
+	          <input id="player1name" name="player1name" type="text" class="validate" value="Ekushisu">
 	          <label for="player1name">Nom du joueur 1</label>
 	        </div>
 	        <div class="input-field col s6">
-	          <input id="player2name" type="text" class="validate">
+	          <input id="player2name" name="player2name" type="text" class="validate" value="Yaya">
 	          <label for="player2name">Nom du joueur 2</label>
 	        </div>
 	      </div>  
@@ -178,6 +178,5 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
-
   </body>
 </html>
