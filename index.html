@@ -105,12 +105,12 @@
 		</div>
 		<div class="row">
 			<div class="col s4 offset-s4 center-align">
-				<a href="#" id="validateTourButton" class="disabled waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>Valider le tour</a>
+				<a href="#" id="validateTourButton" class="disabled waves-effect waves-light btn"><i class="material-icons left">done</i>Valider le tour</a>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col s4 offset-s4 center-align">
-				<a href="#" id="restartGameButton" class="waves-effect waves-light btn red"><i class="material-icons left">thumb_down</i>Redémarrer la partie</a>
+				<a href="#" id="restartGameButton" class="waves-effect waves-light btn red"><i class="material-icons left">replay</i>Redémarrer la partie</a>
 			</div>
 		</div>
     </div>
@@ -152,7 +152,7 @@
     </div>
   </footer>
 
-   <div id="modal1" class="modal">
+   <div id="modalIntro" class="modal">
     <div class="modal-content">
       <h4>Paramètres</h4>
       <form action="#">
@@ -173,6 +173,23 @@
     </div>
   </div>
 
+   <div id="modalEndGame" class="modal">
+    <div class="modal-content">
+      <h4><span id="endHeadText">[WINNER NAME]a gagné la partie !</span><br>
+      <small id="endGameReason">Fin du jeu, [END GAME REASON NOT INITIALIZED] </small></h4>
+      <div class="row">
+      	<div class="col s8 offset-s2">
+			<a href="#" id="restartGameButtonEnd" class="waves-effect waves-light btn red"><i class="material-icons left">replay</i>Recommencer une partie</a>
+		</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="restarToastContent">
+  	<p>Voulez-vous vraiment recommencer ?</p><br>
+	<a href="#" class="waves-effect waves-light btn teal" onclick="javascript:location.reload()"><i class="material-icons left">thumb_up</i>Oui</a>
+	<a href="#" onclick="javascript:closeToast(this)" class="waves-effect waves-light btn red"><i class="material-icons left">thumb_down</i>Non</a>  
+  </div>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

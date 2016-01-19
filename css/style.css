@@ -95,3 +95,8 @@ body[data-currentTurn=player2] .square[data-belong=false]:hover {
 	display: inline-block;
 	margin: 0 auto;
 }
+
+#restarToastContent
+{
+	display: none;
+}

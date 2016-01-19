@@ -1,8 +1,14 @@
+
 var game;
+function closeToast(e){
+    $(e).parents("#toast-container").fadeOut();
+}
+
+
 $(document).ready(function(){
     $('.button-collapse').sideNav();
-    $('#modal1').openModal();
-    $('#modal1 form').submit(function(e){
+    $('#modalIntro').openModal();
+    $('#modalIntro form').submit(function(e){
         e.preventDefault();
         e.stopPropagation();
         game = new Game($('input[name=player1name]').val(),$('input[name=player2name]').val());
@@ -36,10 +42,12 @@ Game.prototype.init = function() {
     $('#validateTourButton').click(function(){
         self.onValidateTour();
     });
-    $('#restartGameButton').click(function(){
-        location.reload();
+    $('#restartGameButton, #restartGameButtonEnd').click(function(){
+        //location.reload();
+        var $toastContent = $('#restarToastContent').html();
+        Materialize.toast($toastContent, 50000);
     });
-    $('#modal1').closeModal();
+    $('#modalIntro').closeModal();
 };
 
 
@@ -69,7 +77,6 @@ Game.prototype.getSelectedSquare = function() {
 
 Game.prototype.setCurrentTurn = function(player) {
     this.gameTurn = player;
-    console.log('The hand is to ' + player.name + '(' + player.slug + ')');
     return this.gameTurn;
 };
 
@@ -92,6 +99,17 @@ Game.prototype.changeTurn = function() {
     }
 
     return true;
+};
+
+Game.prototype.findEndGame = function() {
+    var freeCaseCount = $('[data-belong=false]').length;
+
+    // Game map full
+    if (freeCaseCount == 0) {
+        $('#endHeadText').html('Aucun gagnant sur cette partie :/')
+        $('#endGameReason').html('La grille a été complété');
+        $('#modalEndGame').openModal();
+    };
 };
 
 // Triggered when a square is clicked
@@ -120,14 +138,17 @@ Game.prototype.onSelectSquare = function($elem) {
 };
 
 Game.prototype.onValidateTour = function() {
-    console.log("Validation du tour");
     if ($('#validateTourButton').hasClass('disabled'))
+        return false;
+
+    if($('[data-selected=false]').length == 9)
         return false;
 
     $('#validateTourButton').addClass('disabled');
     this.getSelectedSquare().attr('data-selected', false);
     this.getSelectedSquare().attr('data-belong', this.getCurrentTurn().slug);
     this.changeTurn();
+    this.findEndGame();
 
     return true;
 };
