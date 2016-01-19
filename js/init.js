@@ -121,8 +121,13 @@ Game.prototype.onSelectSquare = function($elem) {
 
 Game.prototype.onValidateTour = function() {
     console.log("Validation du tour");
+    if ($('#validateTourButton').hasClass('disabled'))
+        return false;
+
     $('#validateTourButton').addClass('disabled');
     this.getSelectedSquare().attr('data-selected', false);
     this.getSelectedSquare().attr('data-belong', this.getCurrentTurn().slug);
     this.changeTurn();
+
+    return true;
 };
