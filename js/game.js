@@ -88,12 +88,8 @@ Game.prototype.changeTurn = function() {
 Game.prototype.findEndGame = function() {
     var self = this;
 
-    console.log("Check fin du jeu");
-
     if (this.getCurrentPlayerTurnNumber() < 3)
         return false;
-
-    console.log("On a joué plus de 2 fois");
 
     // Check if player 1 got a line
     var lineFound = false; // initialization
@@ -118,11 +114,7 @@ Game.prototype.findEndGame = function() {
         lineFound = [3,5,7];
 
 
-    console.log(lineFound);
-
-
     if (!lineFound) {
-        console.log("Pas de ligne trouvé");
         var freeCaseCount = $('[data-belong=false]').length;
         if (freeCaseCount == 0) {
             $('#endHeadText').html('Aucun gagnant sur cette partie :/')
@@ -139,7 +131,6 @@ Game.prototype.findEndGame = function() {
     }
 
     var winner = $('.square[data-id=' + lineFound[0] + ']').data('belong');
-    console.log(winner);
     
     $('#endHeadText').html(this[winner].name + ' a gagné la partie !');
     $('#endGameReason').html('Une ligne a été complétée');
@@ -189,7 +180,6 @@ Game.prototype.onValidateTour = function() {
     this.getSelectedSquare().attr('data-selected', false);
     this.getSelectedSquare().attr('data-belong', this.getCurrentTurn().slug);
     gamePiano[this.getSelectedSquare().data('id')] = this.getCurrentTurn().slug;
-    console.log(gamePiano);
     this.increasePlayerTurnNumber();
     this.findEndGame();
     this.changeTurn();
