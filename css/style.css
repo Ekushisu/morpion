@@ -17,11 +17,11 @@ flex: 1 0 auto;
 }
 
 
-body[data-currentTurn=player1] .square[data-select=false]:hover {
+body[data-currentTurn=player1] .square[data-belong=false]:hover {
 	background: green !important;
 }
 
-body[data-currentTurn=player2] .square[data-select=false]:hover {
+body[data-currentTurn=player2] .square[data-belong=false]:hover {
 	background: red !important;
 }
 
@@ -35,14 +35,38 @@ body[data-currentTurn=player2] .square[data-select=false]:hover {
 	transition: all 0.2s ease-out;
 }
 
-.square[data-select=player1]
+.square[data-belong=player1]
 {
 	background: green !important;
 }
 
-.square[data-select=player2]
+.square[data-belong=player2]
 {
 	background: red !important;
+}
+
+.square[data-selected=player1]
+{
+    -webkit-animation: selectedGreen 0.5s infinite; /* Chrome, Safari, Opera */ 
+    animation: selectedGreen 0.5s infinite;
+}
+
+.square[data-selected=player2]
+{
+    -webkit-animation: selectedRed 0.5s infinite; /* Chrome, Safari, Opera */ 
+    animation: selectedRed 0.5s infinite;
+}
+
+@keyframes selectedGreen {
+    0%   {background: green !important;}
+    50%   {background: green;}
+    100%   {background: green !important;}
+}
+
+@keyframes selectedRed {
+    0%   {background: red !important;}
+    50%   {background: red;}
+    100%   {background: red !important;}
 }
 
 .square:hover {
@@ -70,4 +94,9 @@ body[data-currentTurn=player2] .square[data-select=false]:hover {
 #validateTourButton {
 	display: inline-block;
 	margin: 0 auto;
+}
+
+#restarToastContent
+{
+	display: none;
 }
