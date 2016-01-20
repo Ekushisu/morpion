@@ -35,65 +35,65 @@
     		</div>
     	</div>
 		<div class="row">
-			<div class="col s4 offset-s4">
+			<div class="col s12 m6 offset-m3 l4 offset-l4">
 				<div id="gameGrid">
-					<div class="square blue-grey lighten-4" data-belong="false" data-selected="false" data-x="0" data-y="0">
+					<div class="square blue-grey lighten-4" data-belong="false" data-selected="false" data-x=0 data-y=0>
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4" data-belong="false" data-selected="false" data-x="1" data-y="0">
+					<div class="square blue-grey lighten-4" data-belong="false" data-selected="false" data-x=1 data-y=0>
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x="2" data-y="0">
+					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x=2 data-y=0>
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x="0" data-y="1">
+					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x=0 data-y=1>
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x="1" data-y="1">
+					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x=1 data-y=1>
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x="2" data-y="1">
+					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x=2 data-y=1>
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x="0" data-y="2">
+					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x=0 data-y=2>
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x="1" data-y="2">
+					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x=1 data-y=2>
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
 					        </div>
 					    </div>
 					</div>
-					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x="2" data-y="2">
+					<div class="square blue-grey lighten-4"  data-belong="false" data-selected="false" data-x=2 data-y=2>
 					    <div class="content">
 					        <div class="table">
 					            <div class="table-cell center"></div>
@@ -177,18 +177,15 @@
     <div class="modal-content">
       <h4><span id="endHeadText">[WINNER NAME]a gagné la partie !</span><br>
       <small id="endGameReason">Fin du jeu, [END GAME REASON NOT INITIALIZED] </small></h4>
-      <div class="row">
-      	<div class="col s8 offset-s2">
-			<a href="#" id="restartGameButtonEnd" class="waves-effect waves-light btn red"><i class="material-icons left">replay</i>Recommencer une partie</a>
-		</div>
-      </div>
     </div>
+    <div class="modal-footer">
+	  <a href="#" id="restartGameButtonEnd" onclick="javascript:location.reload()" class="waves-effect waves-light btn red"><i class="material-icons left">replay</i>Recommencer une partie</a>
+    </div
   </div>
 
   <div id="restarToastContent">
   	<p>Voulez-vous vraiment recommencer ?</p><br>
-	<a href="#" class="waves-effect waves-light btn teal" onclick="javascript:location.reload()"><i class="material-icons left">thumb_up</i>Oui</a>
-	<a href="#" onclick="javascript:closeToast(this)" class="waves-effect waves-light btn red"><i class="material-icons left">thumb_down</i>Non</a>  
+	<a href="#" class="waves-effect waves-light btn teal" onclick="javascript:location.reload()"><i class="material-icons left">thumb_up</i>Oui</a> 
   </div>
 
   <!--  Scripts-->

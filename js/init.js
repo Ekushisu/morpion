@@ -1,13 +1,16 @@
 
 var game;
-function closeToast(e){
-    $(e).parents("#toast-container").fadeOut();
-}
-
+jQuery.fn.exists = function(){return this.length>0;}
 
 $(document).ready(function(){
     $('.button-collapse').sideNav();
-    $('#modalIntro').openModal();
+    $('#modalIntro').openModal({
+        dismissible: false, // Modal can be dismissed by clicking outside of the modal
+        opacity: .2, // Opacity of modal background
+        in_duration: 300, // Transition in duration
+        out_duration: 200, // Transition out duration
+    });
+
     $('#modalIntro form').submit(function(e){
         e.preventDefault();
         e.stopPropagation();
@@ -42,10 +45,9 @@ Game.prototype.init = function() {
     $('#validateTourButton').click(function(){
         self.onValidateTour();
     });
-    $('#restartGameButton, #restartGameButtonEnd').click(function(){
-        //location.reload();
+    $('#restartGameButton').click(function(){
         var $toastContent = $('#restarToastContent').html();
-        Materialize.toast($toastContent, 50000);
+        Materialize.toast($toastContent, 5000);
     });
     $('#modalIntro').closeModal();
 };
@@ -87,7 +89,6 @@ Game.prototype.getCurrentTurn = function()
 }
 
 Game.prototype.changeTurn = function() {
-    console.log(this.getCurrentTurn().slug);
     if (this.getCurrentTurn().slug == "player1")
     {
         this.setCurrentTurn(this.player2);
@@ -102,14 +103,56 @@ Game.prototype.changeTurn = function() {
 };
 
 Game.prototype.findEndGame = function() {
+    var self = this;
     var freeCaseCount = $('[data-belong=false]').length;
 
     // Game map full
     if (freeCaseCount == 0) {
         $('#endHeadText').html('Aucun gagnant sur cette partie :/')
         $('#endGameReason').html('La grille a été complété');
-        $('#modalEndGame').openModal();
+        $('#modalEndGame').openModal({
+          dismissible: false, // Modal can be dismissed by clicking outside of the modal
+          opacity: .2, // Opacity of modal background
+          in_duration: 300, // Transition in duration
+          out_duration: 200, // Transition out duration
+        });
     };
+
+    // Check if player 1 got a line
+    var lineFound = false; // initialization
+
+    $('.square').each(function(){
+       /* var aligned = 0;
+        var currentX = $(this).data('x');
+        var currentY = $(this).data('y');
+
+        for (var x = (currentX - 1); x <= (currentX + 1; x++) {
+            for (var y = (currentY - 1); y <= (currentX + 1); y++) {
+                var testedCase = $(".square[data-x=" + x + "][data-y=" + y + "]");
+                if (!testedCase.exists())
+                    continue;
+
+                if (testedCase.data('belong') != self.player1.slug)
+                    continue;
+
+                if (currentX == x && currentY == y)
+                    continue;
+                aligned++;
+            };
+        };
+
+        if (aligned >= 2) {
+            alert("WE GOT A WINNEr");
+        };*/
+    });
+
+    /*for (var x = 0; x <= 2; x++) {
+        for (var y = 0; y <= 2; y++) {
+            var testedCase = $(".square[data-x=" + x + "][data-y=" + y + "]");
+            if (testedCase.data('belong') != self.player1.slug)
+                continue;
+        };
+    };*/
 };
 
 // Triggered when a square is clicked
@@ -147,8 +190,8 @@ Game.prototype.onValidateTour = function() {
     $('#validateTourButton').addClass('disabled');
     this.getSelectedSquare().attr('data-selected', false);
     this.getSelectedSquare().attr('data-belong', this.getCurrentTurn().slug);
-    this.changeTurn();
     this.findEndGame();
+    this.changeTurn();
 
     return true;
 };
