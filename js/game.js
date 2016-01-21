@@ -20,15 +20,35 @@ Game.prototype.init = function() {
     $('#player1nameholder').html(this.player1.name);
     $('#player2nameholder').html(this.player2.name);
     $('#currentplayernameholder').html(this.player1.name);
-    $('.square[data-belong=false]').click(function(){
-        self.onSelectSquare($(this));
+    $('.square[data-belong=false]').click(function(e){
+        if ($('body').attr('data-gameMode') == "AI") {
+            if(e.hasOwnProperty('originalEvent')){
+                if (self.getCurrentTurn().slug == "player1") {
+                    self.onSelectSquare($(this));  
+                };
+            } else {
+                self.onSelectSquare($(this));                  
+            }
+        } else {
+            self.onSelectSquare($(this)); 
+        }   
     });
-    $('#validateTourButton').click(function(){
-        self.onValidateTour();
+    $('#validateTourButton').click(function(e){
+        if ($('body').attr('data-gameMode') == "AI") {
+            if(e.hasOwnProperty('originalEvent')){
+                if (self.getCurrentTurn().slug == "player1") {
+                    self.onValidateTour(); 
+                }
+            } else {
+               self.onValidateTour();                  
+            }
+        } else {
+            self.onValidateTour(); 
+        }      
     });
     $('#restartGameButton').click(function(){
         var $toastContent = $('#restarToastContent').html();
-        Materialize.toast($toastContent, 5000);
+        Materialize.toast($toastContent, 5000);    
     });
     $('#modalIntro').closeModal();
 };

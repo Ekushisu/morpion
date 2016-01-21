@@ -1,4 +1,3 @@
-
 var game;
 var gameMap = {
     1 : {

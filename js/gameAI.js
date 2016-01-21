@@ -56,19 +56,21 @@ GameAI.prototype.AIChoice = function() {
 
 	var squares = [];
 	bestProb.forEach(function(value, index){
-		squares.push(index);
+		if ($('.square[data-id=' + index + ']').attr('data-belong') == "false")
+			squares.push(index);
 	});	
+
+	console.log(squares);
 
 	this.AIClick(squares[Math.floor(Math.random() * squares.length)]);
 };
 
 GameAI.prototype.onValidateTour = function(){
 	Game.prototype.onValidateTour.call(this);
+	this.buildNewProbs();
 
-	if (this.getCurrentTurn().slug == "player2") {
-		this.buildNewProbs();
+	if (this.getCurrentTurn().slug == "player2")
 		this.AIChoice();
-	}
 }
 
 GameAI.prototype.AIClick = function(square) {
