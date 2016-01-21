@@ -59,3 +59,29 @@ var gamePiano = {
     8 : null,
     9 : null
 };
+
+
+var lines = {
+    1 : 1,
+    2 : 1,
+    3 : 1
+}
+
+var cols = {
+    1 : 1,
+    2 : 1,
+    3 : 1
+}
+
+var diag = {
+    1 : 1,
+    2 : 1
+}
+
+Array.prototype.max = function() {
+  return Math.max.apply(null, this);
+};
+
+Array.prototype.min = function() {
+  return Math.min.apply(null, this);
+};

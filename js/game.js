@@ -71,6 +71,10 @@ Game.prototype.getCurrentTurn = function()
     return this.gameTurn;
 }
 
+Game.prototype.getNextTurnPlayerSlug = function() {
+    return this.getCurrentTurn().slug == "player1" ? "player2" : "player1";
+};
+
 Game.prototype.changeTurn = function() {
     if (this.getCurrentTurn().slug == "player1")
     {
@@ -81,6 +85,8 @@ Game.prototype.changeTurn = function() {
         $('body').attr("data-currentTurn", this.getCurrentTurn().slug);
         $('#currentplayernameholder').html(this.getCurrentTurn().name);
     }
+
+    console.log("On a changé de tour, nous somme au tour du " +  this.getCurrentTurn().slug );
 
     return true;
 };
@@ -170,6 +176,7 @@ Game.prototype.onSelectSquare = function($elem) {
 };
 
 Game.prototype.onValidateTour = function() {
+
     if ($('#validateTourButton').hasClass('disabled'))
         return false;
 
