@@ -1,2 +1,7 @@
+[1.1.0]
+Fix some wording and front comportement
+
+add IA (at least a prototype)
+
 [1.0.0]
 First game release including PlayerVsPlayer only

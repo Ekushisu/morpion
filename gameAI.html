@@ -10,12 +10,12 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
-<body data-currentTurn="player1" data-gameMode="PVP">
+<body data-currentTurn="player1" data-gameMode="AI">
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">WAZAAA!</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="./index.html" class="waves-effect waves-light btn active">Player vs Player</a></li>
-        <li><a href="./gameAI.html" class="waves-effect waves-light btn">Player vs IA</a></li>
+        <li><a href="./index.html" class="waves-effect waves-light btn">Player vs Player</a></li>
+        <li><a href="./gameAI.html" class="waves-effect waves-light btn active">Player vs IA</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
@@ -117,6 +117,7 @@
     </div>
   </main>
 
+
   <footer class="page-footer orange">
     <div class="footer-copyright">
       <div class="container">
@@ -132,17 +133,13 @@
 	      <div class="row">
 	        <div class="input-field col s6">
 	          <input id="player1name" name="player1name" type="text" class="validate" value="Ekushisu">
-	          <label for="player1name">Nom du joueur 1</label>
-	        </div>
-	        <div class="input-field col s6">
-	          <input id="player2name" name="player2name" type="text" class="validate" value="Yaya">
-	          <label for="player2name">Nom du joueur 2</label>
+	          <label for="player1name">Nom du Joueur</label>
 	        </div>
 	      </div>  
 	      <button class="btn waves-effect waves-light" type="submit" name="action">Démarrer !
 		    <i class="material-icons right">send</i>
 		  </button>	
-			<a href="./gameAI.html" class="waves-effect waves-light btn">Player vs IA</a>
+			<a href="./index.html" class="waves-effect waves-light btn">Player vs Player</a>
       </form>
     </div>
   </div>
