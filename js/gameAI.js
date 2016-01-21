@@ -60,8 +60,6 @@ GameAI.prototype.AIChoice = function() {
 			squares.push(index);
 	});	
 
-	console.log(squares);
-
 	this.AIClick(squares[Math.floor(Math.random() * squares.length)]);
 };
 
@@ -78,5 +76,5 @@ GameAI.prototype.AIClick = function(square) {
     Materialize.toast("L'IA a choisit sa case (" + square + ')', 5000);
 	setTimeout(function(){
 		$('#validateTourButton').trigger("click");
-	},2000);
+	},800);
 };

@@ -103,11 +103,8 @@ Game.prototype.changeTurn = function() {
     } else {
         this.setCurrentTurn(this.player1);
         $('body').attr("data-currentTurn", this.getCurrentTurn().slug);
-        $('#currentplayernameholder').html(this.getCurrentTurn().name);
     }
-
-    console.log("On a changé de tour, nous somme au tour du " +  this.getCurrentTurn().slug );
-
+    $('#currentplayernameholder').html(this.getCurrentTurn().name);
     return true;
 };
 
