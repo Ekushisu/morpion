@@ -1,8 +1,7 @@
+
 jQuery.fn.exists = function(){return this.length>0;}
 
 $(document).ready(function(){
-
-    $('.button-collapse').sideNav();
     switch($('body').attr('data-gameMode')) {
         case 'AI':
             $('#modalIntro').openModal({

@@ -1,0 +1,9 @@
+{
+  "name": "ekushisu-morpion",
+  "version": "1.1.0",
+  "description": "SocketIO morpion game, including Player vs AI mod",
+  "dependencies": {
+    "express": "^4.10.2",
+    "twig": "^0.8.7"
+  }
+}

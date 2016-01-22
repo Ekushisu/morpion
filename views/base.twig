@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>{% block headTitle %}Morpion game{% endblock %}</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body {% block bodyAttributes %}{% endblock %}>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="{{routes.home}}" class="brand-logo">WAZAAA!</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="{{routes.gameOnline}}" class="waves-effect waves-light btn">Play online</a></li>
+        <li><a href="{{routes.game}}" class="waves-effect waves-light btn">Player versus Player</a></li>
+        <li><a href="{{routes.gameAI}}" class="waves-effect waves-light btn">Player versus IA</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="{{routes.gameOnline}}">Play online</a></li>
+        <li><a href="{{routes.game}}">Player versus Player</a></li>
+        <li><a href="{{routes.gameAI}}">Player versus IA</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+
+  <main class="section">
+    {% block main %}
+      <div class="container">
+    
+      </div>
+    {% endblock %}    
+  </main>
+
+  <footer class="page-footer orange">
+    <div class="footer-copyright">
+      <div class="container">
+      Réalisé par<a class="orange-text text-lighten-3" href="http://thomaslabeyrie.fr">Thomas Labeyrie</a> et <a href="https://www.linkedin.com/in/lucas-montion-1277a1a3" class="orange-text text-lighten-3" >Lucas Montion</a>
+      </div>
+    </div>
+  </footer>
+
+  <!--  Scripts-->
+  {% block javascriptPreLib %}{% endblock %}
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/js/base.js"></script>
+  {% block javascriptPostLib %}{% endblock %}
+  </body>
+</html>
