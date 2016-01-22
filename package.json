@@ -3,7 +3,9 @@
   "version": "1.1.0",
   "description": "SocketIO morpion game, including Player vs AI mod",
   "dependencies": {
+    "death": "^1.0.0",
     "express": "^4.10.2",
+    "prompt": "^0.2.14",
     "twig": "^0.8.7"
   }
 }
