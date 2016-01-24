@@ -1,0 +1,16 @@
+{% extends "base.twig" %}
+
+{% block bodyAttributes %} data-currentTurn="player1" data-gameMode="online" {% endblock %}
+{% block main %}
+
+ 	{% include "gameBoard.twig" %}
+
+  	{% include "commons.notifications.twig" %}
+ {% endblock %}
+
+{% block javascriptPostLib %}
+  <script src="js/variables.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/gameAI.js"></script>
+  <script src="js/gameInit.js"></script>
+{% endblock %}

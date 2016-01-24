@@ -36,6 +36,10 @@ $(document).ready(function(){
             });
             break;
 
+        case 'online':
+        
+            break;
+
         default:
             $('#modalIntro').openModal({
                 dismissible: false, // Modal can be dismissed by clicking outside of the modal

@@ -14,13 +14,13 @@
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="{{routes.home}}" class="brand-logo">WAZAAA!</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="{{routes.gameOnline}}" class="waves-effect waves-light btn">Play online</a></li>
+        <li><a href="#" class="playOnlineButton waves-effect waves-light btn">Play online</a></li>
         <li><a href="{{routes.game}}" class="waves-effect waves-light btn">Player versus Player</a></li>
         <li><a href="{{routes.gameAI}}" class="waves-effect waves-light btn">Player versus IA</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="{{routes.gameOnline}}">Play online</a></li>
+        <li><a href="#" class="playOnlineButton">Play online</a></li>
         <li><a href="{{routes.game}}">Player versus Player</a></li>
         <li><a href="{{routes.gameAI}}">Player versus IA</a></li>
       </ul>
@@ -35,6 +35,7 @@
     
       </div>
     {% endblock %}    
+    {% include "commons.onlineForm.twig" %}
   </main>
 
   <footer class="page-footer orange">
