@@ -28,48 +28,28 @@ $(document).ready(function(){
 	        	$('.progress-container').fadeIn(500);
 
 	        	tmp.playerName = $("input[name=playerName]").val();	        	
- 
-
-			    var socket = io.connect('http://' + config.host + ':' + config.port);
 			        socket.emit('index');
 			        socket.on('matched', function (nemesis) {
 			            url_room = 'http://' + config.host + ':' + config.port + "/one-o-web/" + nemesis.room;
 			            $('.progress-container').find('p').html('We found your challenger !');
 			            $('.progress-container').find('p').append('<h5>' + tmp.playerName + ' vs ' + nemesis.pseudo + '</h5>');
-			            setTimeout(function(){
-				 			$('.progress-container').find('p').append('<h4 class="counting">10</h4>')	 
+				 			$('.progress-container').find('p').append('<h4 class="counting">5</h4>'); 
 					 		setTimeout(function(){
-					 			$('.progress-container').find(".counting").html("9");
+					 			$('.progress-container').find(".counting").html("4");
 						 		setTimeout(function(){
-						 			$('.progress-container').find(".counting").html("8");
+						 			$('.progress-container').find(".counting").html("3");
 							 		setTimeout(function(){
-							 			$('.progress-container').find(".counting").html("7");
+							 			$('.progress-container').find(".counting").html("2");
 								 		setTimeout(function(){
-								 			$('.progress-container').find(".counting").html("6");
+								 			$('.progress-container').find(".counting").html("1");
 									 		setTimeout(function(){
-									 			$('.progress-container').find(".counting").html("5");
-										 		setTimeout(function(){
-										 			$('.progress-container').find(".counting").html("4");
-											 		setTimeout(function(){
-											 			$('.progress-container').find(".counting").html("3");
-												 		setTimeout(function(){
-												 			$('.progress-container').find(".counting").html("2");
-													 		setTimeout(function(){
-													 			$('.progress-container').find(".counting").html("1");
-														 		setTimeout(function(){
-														 			$('.progress-container').find(".counting").html("0");
-																	window.location.replace(url_room);
-														 		},1000); 
-													 		},1000); 
-												 		},1000); 
-											 		},1000); 
-										 		},1000); 
+									 			$('.progress-container').find(".counting").html("0");
+												window.location.replace(url_room);
 									 		},1000); 
 								 		},1000); 
 							 		},1000); 
 						 		},1000); 
-					 		},1000); 
-				 		},1000); 	 	
+					 		},1000); 	
 			        });
 
 	        	sessionStorage.setItem("localPlayerName", tmp.playerName);

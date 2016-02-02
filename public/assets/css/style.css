@@ -101,7 +101,7 @@ body[data-currentTurn=player2] .square[data-belong=false]:hover {
 	display: none;
 }
 
-.progress-container {
+.progress-container:not(.waitingModal) {
     display: none;
 }
 

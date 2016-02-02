@@ -47,16 +47,17 @@
   </footer>
 
   <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>  
+  <script src="/socket.io/socket.io.js"></script>
+  {% block javascriptPreLib %}{% endblock %}
   <script>
     var config = {
         host : '{{ config.host }}',
         port : '{{ config.port }}'
     };
+    var socket = io.connect('http://' + config.host + ':' + config.port);
     var routes = {{routes|json_encode()}};
   </script>
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>  
-  <script src="/socket.io/socket.io.js"></script>
-  {% block javascriptPreLib %}{% endblock %}
   <script src="/js/materialize.js"></script>
   <script src="/js/base.js"></script>
   {% block javascriptPostLib %}{% endblock %}

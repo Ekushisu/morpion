@@ -49,7 +49,9 @@ var express = require('express'),
     app.get(routes.gameOnline, function(req, res){
         var data = controllers.home([req.params.gameid]) || {};
         data.req = req;
-        res.render('gameOnline.twig', new utils.injectGlobalData(globalData,{}));
+        res.render('gameOnline.twig', new utils.injectGlobalData(globalData,{
+            roomID : req.params.gameid
+        }));
     });
 
 
@@ -104,49 +106,10 @@ var express = require('express'),
             console.log("Connexion d'un joueur ("+ socket.id + ")");
         });
 
-        socket.on('newClient', function (data) {
-            if(typeof rooms[data.room] == 'undefined' ){
-                rooms[data.room] = [];
-                rooms[data.room]['pseudos'] = [];
-                rooms[data.room]['players'] = [];
-                rooms[data.room]['timer'] = [];
-                console.log("Room " + data.room + " created");
-            }
-
-            if (rooms[data.room]['pseudos'].length < 2) {
-                socket.join(data.room);
-                rooms[data.room]['name'] = data.room;
-                rooms[data.room]['pseudos'].push(data.pseudo);
-                words[data.pseudo] = [];
-                console.log(data.pseudo  + " connected on " + data.room);
-
-                socket.pseudo = data.pseudo;
-                socket.ready = false;
-                socket.score = 0;
-                socket.room = data.room;
-                rooms[data.room]['players'].push(socket);
-                socket.broadcast.to(data.room).emit('newClient', data.pseudo);
-                socket.broadcast.to(data.room).emit('update_joueurs',  rooms[data.room]['pseudos']);
-                output = template.render({
-                    rooms: rooms
-                });
-                socket.broadcast.emit('update_list', output);
-                if (rooms[data.room]['pseudos'].length == 2) {
-                    socket.emit('adversaire_name',  rooms[data.room]['pseudos'][0]);
-                    socket.broadcast.to(data.room).emit('game_ready',  rooms[data.room]['pseudos']);
-                    socket.emit('game_ready',  rooms[data.room]['pseudos']);
-                }
-                else socket.emit('wait_joueur');
-            }
-            else socket.emit('too_much_players');
-        });
-
         socket.on('matchmaking', function (pseudo) {
             console.log("onMatchmaking (" + pseudo + ")");
             client = [socket.id, pseudo];
             waiting.push(client);
-            console.log(waiting);
-            console.log(socket.connected);
             if(waiting.length >= 2){
                 nj1 = Math.floor(Math.random() * waiting.length);
                 j1 = waiting[nj1];
@@ -164,62 +127,30 @@ var express = require('express'),
                 io.to(j1[0]).emit('matched', {pseudo:j2[1], room:room_name});
                 io.to(j2[0]).emit('matched', {pseudo:j1[1], room:room_name});
             }
-
         });
+        
+        socket.on('ready', function (data) {
+            console.log(data.readyPlayer + " is ready");
+            var gameReady = true;
 
-        socket.on('disconnect', function (pseudo) {
-            if (socket.pseudo != null) {
-                var i = rooms[socket.room]['players'].indexOf(socket);
-                clearInterval(rooms[socket.room]['timer']['timer']);
-                console.log(i);
-                rooms[socket.room]['pseudos'].splice(i, 1);
-                rooms[socket.room]['players'].splice(i, 1);
-                socket.ready = false;
-                socket.broadcast.to(socket.room).emit('wait_joueur');
-                socket.broadcast.to(socket.room).emit('disconnected', socket.pseudo);
-                console.log(socket.pseudo + " disconnected from " + socket.room );
-                if(rooms[socket.room]['pseudos'].length == 0){
-                    clearInterval(rooms[socket.room]['timer']['timer']);
-                    delete rooms[socket.room];
-                    console.log("Room " + socket.room + " deleted (not enought players)");
-                }
-                output = template.render({
-                    rooms: rooms
-                });
-                socket.broadcast.emit('update_list', output);
+            if (typeof data.room  == 'undefined')
+                return false;
+
+            if(typeof rooms[data.room] == 'undefined'){
+                rooms[data.room] = [];
+                rooms[data.room]['players'] = [data.readyPlayer];
+                gameReady = false;
+                console.log("Room " + data.room + " created");
+            } else {
+                console.log("Room " + data.room + " already exist, " + rooms[data.room]['players'][0] + " is waiting inside");
+                rooms[data.room]['players'].push(data.readyPlayer);
+                gameReady = true;
             }
-        });
 
+            if (!gameReady)
+                return false;
 
-        socket.on('ready', function (ready) {
-            gameReady = true;
-            console.log(socket.pseudo + " est prêt");
-            socket.ready = true;
-            console.log(socket.ready);
-            rooms[socket.room]['players'].forEach(function (player, index) {
-                console.log(player.ready);
-                if (gameReady)
-                    gameReady = !!player.ready;
-            });
-            if (gameReady)
-                rooms[socket.room]['players'].forEach(function (player, index) {
-                    player.ready = false;
-                });
-
-                var possible = "abcdefghijklmnopqrstuvwxyz";
-                letter = possible.charAt(Math.floor(Math.random() * possible.length));
-                console.log(letter);
-                io.sockets.to(socket.room).emit('start_game', letter);
-                rooms[socket.room]['timer']['countdown'] = 60;
-
-                rooms[socket.room]['timer']['timer'] = setInterval(function() {
-                    rooms[socket.room]['timer']['countdown']--;
-                    if (rooms[socket.room]['timer']['countdown'] >= 0)
-                        io.sockets.to(socket.room).emit('timer', { countdown: rooms[socket.room]['timer']['countdown'] });
-                    else {
-                        clearInterval(rooms[socket.room]['timer']['timer']);
-                        io.sockets.to(socket.room).emit('stop_game');
-                    }
-                }, 1000);   
+            console.log("Everybody is ready");
+            socket.emit('startGame', {player1 : rooms[data.room]['players'][0], player2 : rooms[data.room]['players'][1]});
         });
     });
