@@ -115,3 +115,8 @@ body[data-currentTurn=player2] .square[data-belong=false]:hover {
     50%   {opacity: 0.2;}
     100%   {opacity: 1 !important;}
 }
+
+
+.modal-content .btn {
+    margin-bottom: 6px;
+}
