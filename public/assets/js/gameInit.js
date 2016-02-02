@@ -38,11 +38,11 @@ $(document).ready(function(){
             $('#WaitingModal').openModal(modalsOptions);
             socket.emit('ready',{ readyPlayer : sessionStorage.getItem('localPlayerName'), room : currentRoom });
             socket.on('startGame', function (data) {
-                Console.log('Start Game okey !');
+                console.log('Start Game okey !');
                 game = new Game(data.player1,data.player2);
                 game.init();
                 $('#WaitingModal').closeModal();
-            });        
+            });
             break;
 
         default:

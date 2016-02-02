@@ -128,7 +128,7 @@ var express = require('express'),
                 io.to(j2[0]).emit('matched', {pseudo:j1[1], room:room_name});
             }
         });
-        
+
         socket.on('ready', function (data) {
             console.log(data.readyPlayer + " is ready");
             var gameReady = true;
@@ -138,12 +138,13 @@ var express = require('express'),
 
             if(typeof rooms[data.room] == 'undefined'){
                 rooms[data.room] = [];
-                rooms[data.room]['players'] = [data.readyPlayer];
+                rooms[data.room]['players'] = new Array();
+                rooms[data.room]['players'].push([socket.id, data.readyPlayer]);
                 gameReady = false;
                 console.log("Room " + data.room + " created");
             } else {
                 console.log("Room " + data.room + " already exist, " + rooms[data.room]['players'][0] + " is waiting inside");
-                rooms[data.room]['players'].push(data.readyPlayer);
+                rooms[data.room]['players'].push([socket.id, data.readyPlayer]);
                 gameReady = true;
             }
 
@@ -151,6 +152,10 @@ var express = require('express'),
                 return false;
 
             console.log("Everybody is ready");
-            socket.emit('startGame', {player1 : rooms[data.room]['players'][0], player2 : rooms[data.room]['players'][1]});
+            console.log(rooms[data.room]['players']);
+
+            rooms[data.room]['players'].forEach(function(player){
+                io.to(player[0]).emit('startGame', {player1 : rooms[data.room]['players'][0], player2 : rooms[data.room]['players'][1]});
+            });
         });
     });
