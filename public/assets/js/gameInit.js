@@ -39,7 +39,7 @@ $(document).ready(function(){
             socket.emit('ready',{ readyPlayer : sessionStorage.getItem('localPlayerName'), room : currentRoom });
             socket.on('startGame', function (data) {
                 console.log('Start Game okey !');
-                game = new Game(data.player1,data.player2);
+                game = new GameOnline(data.player1,data.player2);
                 game.init();
                 $('#WaitingModal').closeModal();
             });
