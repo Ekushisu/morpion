@@ -77,6 +77,8 @@ var diag = {
     2 : 1
 }
 
+var squaresPlayed = [];
+
 Array.prototype.max = function() {
   return Math.max.apply(null, this);
 };

@@ -100,3 +100,23 @@ body[data-currentTurn=player2] .square[data-belong=false]:hover {
 {
 	display: none;
 }
+
+.progress-container:not(.waitingModal) {
+    display: none;
+}
+
+.progress-container p {
+    -webkit-animation: shining 1s infinite; /* Chrome, Safari, Opera */ 
+    animation: shining 1s infinite;    
+}
+
+@keyframes shining {
+    0%   {opacity: 1 !important;}
+    50%   {opacity: 0.2;}
+    100%   {opacity: 1 !important;}
+}
+
+
+.modal-content .btn {
+    margin-bottom: 6px;
+}

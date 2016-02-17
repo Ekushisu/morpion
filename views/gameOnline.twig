@@ -1,0 +1,34 @@
+{% extends "base.twig" %}
+
+{% block bodyAttributes %} data-currentTurn="player1" data-gameMode="online" {% endblock %}
+{% block main %}
+
+ 	{% include "gameBoard.twig" %}
+
+	<div id="WaitingModal" class="modal">
+	    <div class="modal-content">
+	    	<div class="progress-container waitingModal">
+				<div class="progress">
+					<div class="indeterminate"></div>
+				</div>    		
+				<p class="center-align teal-text">Waiting for your challenger (<span class="challengerName">[[CHALLENGER NAME GOES HERE]]</span>)</p>        		
+	    	</div> 
+	    </div>
+  	</div>
+
+  	{% include "commons.notifications.twig" %}
+ {% endblock %}
+
+{% block javascriptPreLib %}
+	<script>
+		var currentRoom = "{{roomID}}";
+	</script>
+{% endblock %}
+
+{% block javascriptPostLib %}
+  <script src="/js/variables.js"></script>
+  <script src="/js/game.js"></script>
+  <script src="/js/gameOnline.js"></script>
+  <script src="/js/gameAI.js"></script>
+  <script src="/js/gameInit.js"></script>
+{% endblock %}

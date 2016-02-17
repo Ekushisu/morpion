@@ -1,0 +1,6 @@
+{
+	"home" 		 : "/",
+	"game" 		 : "/one-o-one",
+	"gameAI" 	 : "/one-o-ai",
+	"gameOnline" : "/one-o-web/:gameid/"
+}

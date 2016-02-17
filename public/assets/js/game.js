@@ -205,8 +205,8 @@ Game.prototype.onValidateTour = function() {
     this.getSelectedSquare().attr('data-belong', this.getCurrentTurn().slug);
     gamePiano[this.getSelectedSquare().data('id')] = this.getCurrentTurn().slug;
     this.increasePlayerTurnNumber();
-    this.findEndGame();
-    this.changeTurn();
+    if (!this.findEndGame());
+        this.changeTurn();
 
     return true;
 };

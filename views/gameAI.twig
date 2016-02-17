@@ -1,0 +1,43 @@
+{% extends "base.twig" %}
+
+{% block bodyAttributes %} data-currentTurn="player1" data-gameMode="AI" {% endblock %}
+{% block main %}
+
+    {% include "gameBoard.twig" %}
+
+
+    <div id="modalIntro" class="modal">
+      <div class="modal-content">
+        <h4>Paramètres</h4>
+        <form action="#">
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="player1name" name="player1name" type="text" class="validate">
+                <label for="player1name">Nom du Joueur</label>
+              </div>
+            </div>
+            <a href="{{routes.home}}" class="btn waves-effect waves-light">
+              <i class="material-icons right">business</i>
+            </a>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Démarrer !
+              <i class="material-icons right">send</i>
+            </button>
+            <a href="{{routes.game}}" class="waves-effect waves-light btn">Player vs Player</a>
+            <a href="#" class="playOnlineButton waves-effect waves-light btn">Play online</a>
+        </form>
+      </div>
+    </div>
+
+    {% include "commons.notifications.twig" %}
+
+{% endblock %}
+
+{% block javascriptPostLib %}
+
+  <script src="/js/variables.js"></script>
+  <script src="/js/game.js"></script>
+  <script src="/js/gameOnline.js"></script>
+  <script src="/js/gameAI.js"></script>
+  <script src="/js/gameInit.js"></script>
+
+{% endblock %}
