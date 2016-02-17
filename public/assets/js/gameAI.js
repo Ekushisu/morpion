@@ -26,16 +26,24 @@ GameAI.prototype.buildNewProbs = function() {
 	if (gamePiano[3] == nextTurnPlayerSlug || gamePiano[5] == nextTurnPlayerSlug || gamePiano[7] == nextTurnPlayerSlug)
 		diag[2] = 0;
 
-
-	gameMap[1].prob = lines[1] + cols[1] + diag[1];
-	gameMap[2].prob = lines[1] + cols[2];
-	gameMap[3].prob = lines[1] + cols[3] + diag[2];
-	gameMap[4].prob = lines[2] + cols[1];
-	gameMap[5].prob = lines[2] + cols[2] + diag[1] + diag[2];
-	gameMap[6].prob = lines[2] + cols[3];
-	gameMap[7].prob = lines[3] + cols[1] + diag[2];
-	gameMap[8].prob = lines[3] + cols[2];
-	gameMap[9].prob = lines[3] + cols[3] + diag[1];
+	if (squaresPlayed.indexOf(1) == -1)
+		gameMap[1].prob = lines[1] + cols[1] + diag[1];
+	if (squaresPlayed.indexOf(2) == -1)
+		gameMap[2].prob = lines[1] + cols[2];
+	if (squaresPlayed.indexOf(3) == -1)
+		gameMap[3].prob = lines[1] + cols[3] + diag[2];
+	if (squaresPlayed.indexOf(4) == -1)
+		gameMap[4].prob = lines[2] + cols[1];
+	if (squaresPlayed.indexOf(5) == -1)
+		gameMap[5].prob = lines[2] + cols[2] + diag[1] + diag[2];
+	if (squaresPlayed.indexOf(6) == -1)
+		gameMap[6].prob = lines[2] + cols[3];
+	if (squaresPlayed.indexOf(7) == -1)
+		gameMap[7].prob = lines[3] + cols[1] + diag[2];
+	if (squaresPlayed.indexOf(8) == -1)
+		gameMap[8].prob = lines[3] + cols[2];
+	if (squaresPlayed.indexOf(9) == -1)
+		gameMap[9].prob = lines[3] + cols[3] + diag[1];
 
 	console.log("[AI] - AI has build new probs");
 
@@ -246,4 +254,5 @@ GameAI.prototype.AIClick = function(square) {
 	setTimeout(function(){
 		$('#validateTourButton').trigger("click");
 	},800);
+	squaresPlayed.push(square);
 };
